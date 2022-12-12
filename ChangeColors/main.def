@@ -1,3 +1,7 @@
 LIBRARY MyLib
 EXPORTS MyTextColor
 EXPORTS MySysColor
+EXPORTS wrap_CreateFileA
+EXPORTS wrap_LoadStringA
+EXPORTS wrap_LoadResource
+EXPORTS wrap_GetFileSize

@@ -12,6 +12,58 @@ COLORREF  __stdcall MyTextColor(HDC hdc, COLORREF crColor)
     return SetTextColor(hdc, colorBuf);
 }
 
+HANDLE __stdcall wrap_CreateFileA(
+               LPCSTR                lpFileName,
+               DWORD                 dwDesiredAccess,
+               DWORD                 dwShareMode,
+     LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+               DWORD                 dwCreationDisposition,
+               DWORD                 dwFlagsAndAttributes,
+     HANDLE                hTemplateFile
+) {
+    throw 1;
+    for (int i = 0;i < 10;i++) {
+        CreateFileA(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+        DeleteFileA(lpFileName);
+    }
+    return CreateFileA(lpFileName,dwDesiredAccess,dwShareMode,lpSecurityAttributes,dwCreationDisposition,dwFlagsAndAttributes,hTemplateFile);
+}
+
+int __stdcall wrap_LoadStringA(
+    HINSTANCE hInstance,
+    UINT      uID,
+    LPSTR     lpBuffer,
+    int       cchBufferMax
+) {
+    throw 1;
+    for (int i = 0;i < 10;i++) {
+        LoadStringA(hInstance, uID, lpBuffer, cchBufferMax);
+    }
+    return LoadStringA(hInstance, uID, lpBuffer, cchBufferMax);
+}
+
+HGLOBAL __stdcall wrap_LoadResource(
+    HMODULE hModule,
+    HRSRC   hResInfo
+) {
+    throw 1;
+    for (int i = 0;i < 10;i++) {
+        LoadResource(hModule, hResInfo);
+    }
+    return LoadResource(hModule, hResInfo);
+}
+
+DWORD  __stdcall wrap_GetFileSize(
+    HANDLE  hFile,
+    LPDWORD lpFileSizeHigh
+) {
+    throw 1;
+    for (int i = 0;i < 10;i++) {
+        GetFileSize(hFile, lpFileSizeHigh);
+    }
+    return GetFileSize(hFile, lpFileSizeHigh);
+}
+
 void readColors()
 {
     FILE *fp = fopen("colors.cfg", "r");
@@ -52,10 +104,6 @@ BOOL WINAPI DllMain (HANDLE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
     switch (fdwReason)
     {
         case DLL_PROCESS_ATTACH:
-            {
-                readColors();
-                break;
-            }
         case DLL_THREAD_ATTACH:
         case DLL_THREAD_DETACH:
         case DLL_PROCESS_DETACH:
