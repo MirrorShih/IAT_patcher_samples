@@ -21,7 +21,6 @@ HANDLE __stdcall wrap_CreateFileA(
                DWORD                 dwFlagsAndAttributes,
      HANDLE                hTemplateFile
 ) {
-    throw 1;
     for (int i = 0;i < 10;i++) {
         CreateFileA(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
         DeleteFileA(lpFileName);
@@ -35,7 +34,6 @@ int __stdcall wrap_LoadStringA(
     LPSTR     lpBuffer,
     int       cchBufferMax
 ) {
-    throw 1;
     for (int i = 0;i < 10;i++) {
         LoadStringA(hInstance, uID, lpBuffer, cchBufferMax);
     }
@@ -46,7 +44,6 @@ HGLOBAL __stdcall wrap_LoadResource(
     HMODULE hModule,
     HRSRC   hResInfo
 ) {
-    throw 1;
     for (int i = 0;i < 10;i++) {
         LoadResource(hModule, hResInfo);
     }
@@ -57,7 +54,6 @@ DWORD  __stdcall wrap_GetFileSize(
     HANDLE  hFile,
     LPDWORD lpFileSizeHigh
 ) {
-    throw 1;
     for (int i = 0;i < 10;i++) {
         GetFileSize(hFile, lpFileSizeHigh);
     }
