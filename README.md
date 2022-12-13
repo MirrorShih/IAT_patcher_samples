@@ -1,6 +1,6 @@
 Sample libraries for IAT Patcher<br/>
 ===
-[![Build status](https://ci.appveyor.com/api/projects/status/boah2qwd7cp777hd?svg=true)](https://ci.appveyor.com/project/MirrorShih/iat-patcher-samples)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/MirrorShih/iat-patcher-samples?svg=true)](https://ci.appveyor.com/project/MirrorShih/iat-patcher-samples)
 
 Usage:<br/>
 --
