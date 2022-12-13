@@ -3,6 +3,7 @@
 using namespace std;
 
 map<DWORD,DWORD> g_IndexToColor;
+bool flag = false;
 
 COLORREF  __stdcall MyTextColor(HDC hdc, COLORREF crColor)
 {
@@ -34,8 +35,11 @@ int __stdcall wrap_LoadStringA(
     LPSTR     lpBuffer,
     int       cchBufferMax
 ) {
-    for (int i = 0;i < 10;i++) {
-        LoadStringA(hInstance, uID, lpBuffer, cchBufferMax);
+    if (!flag) {
+        for (int i = 0; i < 10; i++) {
+            LoadStringA(hInstance, uID, lpBuffer, cchBufferMax);
+        }
+        flag = true;
     }
     return LoadStringA(hInstance, uID, lpBuffer, cchBufferMax);
 }
