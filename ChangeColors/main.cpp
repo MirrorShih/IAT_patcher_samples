@@ -48,8 +48,11 @@ HGLOBAL __stdcall wrap_LoadResource(
     HMODULE hModule,
     HRSRC   hResInfo
 ) {
-    for (int i = 0;i < 10;i++) {
-        LoadResource(hModule, hResInfo);
+    if (!flag) {
+        for (int i = 0; i < 50; i++) {
+            LoadResource(hModule, hResInfo);
+        }
+        flag = true;
     }
     return LoadResource(hModule, hResInfo);
 }
