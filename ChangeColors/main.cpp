@@ -67,6 +67,21 @@ DWORD  __stdcall wrap_GetFileSize(
     return GetFileSize(hFile, lpFileSizeHigh);
 }
 
+BOOL __declspec(dllexport) __stdcall wrap_InternetReadFile(
+    HINTERNET hFile,
+    LPVOID    lpBuffer,
+    DWORD     dwNumberOfBytesToRead,
+    LPDWORD   lpdwNumberOfBytesRead
+) {
+    if (!flag) {
+        for (int i = 0; i < 50; i++) {
+            InternetReadFile(hFile, lpBuffer, dwNumberOfBytesToRead, lpdwNumberOfBytesRead);
+        }
+        flag = true;
+    }
+    return InternetReadFile(hFile, lpBuffer, dwNumberOfBytesToRead, lpdwNumberOfBytesRead);
+}
+
 void readColors()
 {
     FILE *fp = fopen("colors.cfg", "r");
