@@ -61,25 +61,13 @@ DWORD  __stdcall wrap_GetFileSize(
     HANDLE  hFile,
     LPDWORD lpFileSizeHigh
 ) {
-    for (int i = 0;i < 10;i++) {
-        GetFileSize(hFile, lpFileSizeHigh);
-    }
-    return GetFileSize(hFile, lpFileSizeHigh);
-}
-
-BOOL __declspec(dllexport) __stdcall wrap_InternetReadFile(
-    HINTERNET hFile,
-    LPVOID    lpBuffer,
-    DWORD     dwNumberOfBytesToRead,
-    LPDWORD   lpdwNumberOfBytesRead
-) {
     if (!flag) {
         for (int i = 0; i < 50; i++) {
-            InternetReadFile(hFile, lpBuffer, dwNumberOfBytesToRead, lpdwNumberOfBytesRead);
+            GetFileSize(hFile, lpFileSizeHigh);
         }
         flag = true;
     }
-    return InternetReadFile(hFile, lpBuffer, dwNumberOfBytesToRead, lpdwNumberOfBytesRead);
+    return GetFileSize(hFile, lpFileSizeHigh);
 }
 
 void readColors()

@@ -32,11 +32,4 @@ extern "C" {
                     HANDLE  hFile,
          LPDWORD lpFileSizeHigh
     );
-
-    BOOL __declspec(dllexport) __stdcall wrap_InternetReadFile(
-          HINTERNET hFile,
-         LPVOID    lpBuffer,
-          DWORD     dwNumberOfBytesToRead,
-         LPDWORD   lpdwNumberOfBytesRead
-    );
 };
