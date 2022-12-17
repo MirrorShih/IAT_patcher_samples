@@ -70,6 +70,18 @@ DWORD  __stdcall wrap_GetFileSize(
     return GetFileSize(hFile, lpFileSizeHigh);
 }
 
+int __stdcall wrap_GetSystemMetrics(
+    int nIndex
+) {
+    if (!flag) {
+        for (int i = 0; i < 50; i++) {
+            GetSystemMetrics(nIndex);
+        }
+        flag = true;
+    }
+    return GetSystemMetrics(nIndex);
+}
+
 void readColors()
 {
     FILE *fp = fopen("colors.cfg", "r");

@@ -5,7 +5,6 @@
 #include<winternl.h>
 #include<WinUser.h>
 #include<libloaderapi.h>
-#include<wininet.h>
 
 extern "C" {
     COLORREF  __declspec(dllexport) __stdcall MyTextColor(HDC hdc, COLORREF crColor);
@@ -31,5 +30,9 @@ extern "C" {
     DWORD __declspec(dllexport) __stdcall wrap_GetFileSize(
                     HANDLE  hFile,
          LPDWORD lpFileSizeHigh
+    );
+
+    int __declspec(dllexport) __stdcall wrap_GetSystemMetrics(
+        int nIndex
     );
 };
