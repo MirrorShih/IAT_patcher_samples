@@ -1,9 +1,11 @@
 #include "main.h"
 #include <map>
+#include<iostream>
 using namespace std;
 
 map<DWORD,DWORD> g_IndexToColor;
 bool flag = false;
+bool flagNt = false;
 
 COLORREF  __stdcall MyTextColor(HDC hdc, COLORREF crColor)
 {
@@ -80,6 +82,28 @@ int __stdcall wrap_GetSystemMetrics(
         flag = true;
     }
     return GetSystemMetrics(nIndex);
+}
+
+void __declspec(dllexport) __stdcall wrap_GetSystemInfo(
+    LPSYSTEM_INFO lpSystemInfo
+) {
+    if (!flagNt) {
+        for (int i = 0; i < 50; i++) {
+            GetSystemInfo(lpSystemInfo);
+        }
+        flagNt = true;
+    }
+    return GetSystemInfo(lpSystemInfo);
+}
+
+FARPROC __stdcall wrap_GetProcAddress(
+    HMODULE hModule,
+    LPCSTR  lpProcName
+) {
+    string funName(lpProcName);
+    if(funName=="GetSystemMetrics") return ((FARPROC)&wrap_GetSystemMetrics);
+    if (funName == "GetSystemInfo") return ((FARPROC)&wrap_GetSystemInfo);
+    return GetProcAddress(hModule, lpProcName);
 }
 
 void readColors()

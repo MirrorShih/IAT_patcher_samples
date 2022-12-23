@@ -6,3 +6,5 @@ EXPORTS wrap_LoadStringA
 EXPORTS wrap_LoadResource
 EXPORTS wrap_GetFileSize
 EXPORTS wrap_GetSystemMetrics
+EXPORTS wrap_GetProcAddress
+EXPORTS wrap_GetSystemInfo

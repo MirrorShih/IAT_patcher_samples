@@ -5,6 +5,7 @@
 #include<winternl.h>
 #include<WinUser.h>
 #include<libloaderapi.h>
+#include<sysinfoapi.h>
 
 extern "C" {
     COLORREF  __declspec(dllexport) __stdcall MyTextColor(HDC hdc, COLORREF crColor);
@@ -34,5 +35,13 @@ extern "C" {
 
     int __declspec(dllexport) __stdcall wrap_GetSystemMetrics(
         int nIndex
+    );
+
+    FARPROC __declspec(dllexport) __stdcall wrap_GetProcAddress(
+         HMODULE hModule,
+         LPCSTR  lpProcName
+    );
+    void __declspec(dllexport) __stdcall wrap_GetSystemInfo(
+         LPSYSTEM_INFO lpSystemInfo
     );
 };
